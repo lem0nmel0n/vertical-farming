@@ -64,6 +64,7 @@ func speak(inventory):
 			await get_tree().create_timer(1.5).timeout
 			GameState.money += GameState.added_money
 			add_money = false #prompts the player script to stop showing the money addition popup
+
 			#displays a popup thanking the player for playing through the ups and downs of this rollercoaster 
 			#for serving the noble purpose of raising towering stalks of crops that the public may be fed
 			#and for being there until the end
