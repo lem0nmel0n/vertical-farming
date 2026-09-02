@@ -21,7 +21,7 @@ func speak(inventory):
 	var customer = GameState.customers[GameState.customer_index] #recuperates customer data from the GameState autoload, including their linguistic choices during
     # the inevitable interlocution betwixt them and the player, and the produce they requisition
 	var produce = ["tomatoes", "lettuce", "berries"] #consigns all possible produce within a mutable, indexed sequence more ordinarily alluded to as the list abstract data type in colloquial confabulation.
-	var completed = true #initialises the completed var to a builtin boolean value that, for lack of any other name, may be called false
+	var completed = true #initialises the completed var to a builtin boolean value that, for lack of any other name, may be called true
 	for i in produce.size(): #systematically loops through the indices of the produce list
 		var item = produce[i] #deploys the "var" keyword mechanism for mutable data allocation to materialise the "item" indentifier, hereafter retrieving and consigning the
 		#value of the agricultural commodity to said identifier by utilising the pointer "i" to reference the numerical coordinates at which such a crop resides
