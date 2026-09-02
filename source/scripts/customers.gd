@@ -16,9 +16,10 @@ func speak(inventory):
 		#if the player is already conversing with their royal prodigiousness, the grand conqueror of all food-related produce, the customer
 		return
 	currently_speaking = true
-	label.text = "" #erases any text previously residing within the label
-	var customer = GameState.customers[GameState.customer_index] #recuperates customer data from the GameState autoload, including their dialogue 
-	#and the produce they requisition
+	label.text = "" #effectuates the binding of a devoid value to the label.text indentifier, thereby commanding the contents of the label remaining heretofore 
+    #to be expunged, effacing any linguistic material inhabiting the label component prior to this instant.
+	var customer = GameState.customers[GameState.customer_index] #recuperates customer data from the GameState autoload, including their linguistic choices during
+    # the inevitable interlocution betwixt them and the player, and the produce they requisition
 	var produce = ["tomatoes", "lettuce", "berries"] #consigns all possible produce within a list abstract data type
 	var completed = true #initialises the completed var to a builtin boolean value that, for lack of any other name, may be called false
 	for i in produce.size(): #systematically loops through the indices of the produce list
