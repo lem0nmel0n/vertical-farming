@@ -1,0 +1,141 @@
+[gd_scene load_steps=12 format=3 uid="uid://dt7ooq4h34f4b"]
+
+[ext_resource type="PackedScene" uid="uid://hhg3pi5x6r3h" path="res://scenes/background.tscn" id="1_b0q0e"]
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_ogxpy"]
+[ext_resource type="PackedScene" uid="uid://cfwee7woqhfmu" path="res://scenes/player.tscn" id="1_p0xai"]
+[ext_resource type="Texture2D" uid="uid://bpplsqbcy2uwd" path="res://assets/customers-Sheet.png" id="4_lnwhe"]
+[ext_resource type="Script" path="res://scripts/customers.gd" id="5_404to"]
+[ext_resource type="PackedScene" uid="uid://dfu60k0v34a8j" path="res://scenes/camera.tscn" id="5_h1bln"]
+[ext_resource type="FontVariation" uid="uid://bbaixo51jqf5v" path="res://assets/dogica.tres" id="6_ybw10"]
+[ext_resource type="PackedScene" uid="uid://kf7e74711b1d" path="res://scenes/info.tscn" id="8_fyyvu"]
+[ext_resource type="FontFile" uid="uid://qgeerfxlkbkq" path="res://assets/dogica.otf" id="9_74i72"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_urpki"]
+size = Vector2(40, 20)
+
+[sub_resource type="FontVariation" id="FontVariation_rhbya"]
+base_font = ExtResource("9_74i72")
+spacing_glyph = -1
+spacing_space = -3
+
+[node name="main" type="Node2D"]
+script = ExtResource("1_ogxpy")
+
+[node name="background" parent="." instance=ExtResource("1_b0q0e")]
+
+[node name="customers" type="Area2D" parent="."]
+position = Vector2(218, 90)
+script = ExtResource("5_404to")
+
+[node name="sprite" type="Sprite2D" parent="customers"]
+texture = ExtResource("4_lnwhe")
+hframes = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="customers"]
+position = Vector2(-14, 0)
+shape = SubResource("RectangleShape2D_urpki")
+
+[node name="player" parent="." instance=ExtResource("1_p0xai")]
+unique_name_in_owner = true
+position = Vector2(161, 90)
+
+[node name="Camera2D" parent="player" instance=ExtResource("5_h1bln")]
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(1, 0)
+polygon = PackedVector2Array(29, 39, 29, 100, 297, 100, 297, 36, 334, 36, 334, 188, 8, 188, 8, 38)
+
+[node name="canvas" type="CanvasLayer" parent="."]
+
+[node name="canvas_control" type="Control" parent="canvas"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="money" type="HBoxContainer" parent="canvas/canvas_control"]
+layout_mode = 1
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 48.0
+offset_bottom = 12.0
+
+[node name="money" type="Label" parent="canvas/canvas_control/money"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("6_ybw10")
+theme_override_font_sizes/font_size = 8
+text = "money:"
+
+[node name="dialogue" type="HBoxContainer" parent="canvas/canvas_control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -25.0
+offset_right = 255.0
+offset_bottom = -5.0
+grow_vertical = 0
+
+[node name="label" type="Label" parent="canvas/canvas_control/dialogue"]
+custom_minimum_size = Vector2(250, 20)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_rhbya")
+theme_override_font_sizes/font_size = 8
+vertical_alignment = 2
+autowrap_mode = 2
+
+[node name="interact" type="HBoxContainer" parent="canvas/canvas_control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -98.0
+offset_top = -15.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+alignment = 2
+
+[node name="label" type="Label" parent="canvas/canvas_control/interact"]
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_rhbya")
+theme_override_font_sizes/font_size = 8
+text = "E to interact"
+horizontal_alignment = 2
+
+[node name="info" type="HBoxContainer" parent="canvas/canvas_control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -175.0
+offset_right = 250.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -1
+
+[node name="info" parent="canvas/canvas_control/info" instance=ExtResource("8_fyyvu")]
+layout_mode = 2
+
+[connection signal="body_entered" from="customers" to="customers" method="_on_body_entered"]
+[connection signal="body_exited" from="customers" to="customers" method="_on_body_exited"]

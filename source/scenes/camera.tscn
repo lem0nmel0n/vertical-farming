@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfu60k0v34a8j"]
+
+[ext_resource type="Script" path="res://scripts/camera_2d.gd" id="1_cutpj"]
+
+[node name="Camera2D" type="Camera2D"]
+drag_horizontal_enabled = true
+drag_left_margin = 0.1
+drag_right_margin = 0.1
+script = ExtResource("1_cutpj")

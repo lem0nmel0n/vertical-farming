@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c07p116kg86wg"
-path="res://.godot/imported/index.apple-touch-icon.png-5b76feb1ffc19eb4ac1564b276f66be3.ctex"
+uid="uid://rk7tg2jurxop"
+path="res://.godot/imported/tomatoes1-Sheet.png-11ea8a6596424182b9aa0d7605577333.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://farming_repo/index.apple-touch-icon.png"
-dest_files=["res://.godot/imported/index.apple-touch-icon.png-5b76feb1ffc19eb4ac1564b276f66be3.ctex"]
+source_file="res://source/assets/tomatoes1-Sheet.png"
+dest_files=["res://.godot/imported/tomatoes1-Sheet.png-11ea8a6596424182b9aa0d7605577333.ctex"]
 
 [params]
 

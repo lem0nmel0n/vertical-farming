@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://hhg3pi5x6r3h"]
+
+[ext_resource type="Texture2D" uid="uid://duhjkslil4re7" path="res://assets/background.png" id="1_tooei"]
+[ext_resource type="PackedScene" uid="uid://ummhk75o1p6y" path="res://scenes/door.tscn" id="2_66c8m"]
+[ext_resource type="Script" path="res://scripts/door.gd" id="3_up57y"]
+
+[node name="background" type="ColorRect"]
+offset_left = -109.0
+offset_top = 99.0
+offset_right = 455.0
+offset_bottom = 225.0
+color = Color(0.254902, 0.686275, 0.258824, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 25.0
+offset_top = -83.0
+offset_right = 425.0
+offset_bottom = 67.0
+texture = ExtResource("1_tooei")
+
+[node name="door" parent="." instance=ExtResource("2_66c8m")]
+script = ExtResource("3_up57y")
+
+[connection signal="body_entered" from="door" to="door" method="_on_body_entered"]
+[connection signal="body_exited" from="door" to="door" method="_on_body_exited"]

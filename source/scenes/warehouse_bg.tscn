@@ -1,0 +1,52 @@
+[gd_scene load_steps=9 format=3 uid="uid://7w8biwg3i00p"]
+
+[ext_resource type="Texture2D" uid="uid://doluilp26poky" path="res://assets/warehouse.png" id="1_yraxr"]
+[ext_resource type="PackedScene" uid="uid://dt5sxlod83ite" path="res://scenes/tomatoes.tscn" id="3_u7nny"]
+[ext_resource type="PackedScene" uid="uid://c14qejjyfyqm0" path="res://scenes/lettuce.tscn" id="4_pe74t"]
+[ext_resource type="PackedScene" uid="uid://bcnqudpvifqlq" path="res://scenes/berries.tscn" id="5_elq2d"]
+[ext_resource type="PackedScene" uid="uid://ummhk75o1p6y" path="res://scenes/door.tscn" id="5_koeba"]
+[ext_resource type="Script" path="res://scripts/door.gd" id="7_bfdp1"]
+[ext_resource type="Texture2D" uid="uid://dwbwynunpofmm" path="res://assets/waterpump.png" id="8_e53l6"]
+[ext_resource type="Texture2D" uid="uid://ddc86fn4qbha1" path="res://assets/pipes.png" id="9_lyrdr"]
+
+[node name="warehouse_bg" type="TextureRect"]
+offset_left = -3.0
+offset_top = -6.0
+offset_right = 597.0
+offset_bottom = 394.0
+texture = ExtResource("1_yraxr")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_left = -225.0
+offset_top = 222.0
+offset_right = 850.0
+offset_bottom = 456.0
+color = Color(0.219608, 0.219608, 0.219608, 1)
+
+[node name="pipes" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(302, 197)
+texture = ExtResource("9_lyrdr")
+
+[node name="tomatoes" parent="." instance=ExtResource("3_u7nny")]
+position = Vector2(230, 212)
+
+[node name="lettuce" parent="." instance=ExtResource("4_pe74t")]
+position = Vector2(377, 212)
+
+[node name="berries" parent="." instance=ExtResource("5_elq2d")]
+visible = false
+position = Vector2(301, 212)
+
+[node name="door" parent="." instance=ExtResource("5_koeba")]
+position = Vector2(421, 212)
+script = ExtResource("7_bfdp1")
+
+[node name="waterpump" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(263, 212)
+texture = ExtResource("8_e53l6")
+
+[connection signal="body_entered" from="door" to="door" method="_on_body_entered"]
+[connection signal="body_exited" from="door" to="door" method="_on_body_exited"]

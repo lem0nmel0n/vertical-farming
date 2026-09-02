@@ -1,0 +1,53 @@
+[gd_scene load_steps=4 format=3 uid="uid://kf7e74711b1d"]
+
+[ext_resource type="FontVariation" uid="uid://bbaixo51jqf5v" path="res://assets/dogica.tres" id="1_iy6vl"]
+[ext_resource type="Texture2D" uid="uid://dfyi78jiakt4q" path="res://assets/popup.png" id="2_apk7k"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ovglf"]
+texture = ExtResource("2_apk7k")
+
+[node name="ColorRect" type="ColorRect"]
+custom_minimum_size = Vector2(500, 350)
+color = Color(0, 0, 0, 0.6)
+
+[node name="canvas" type="CanvasLayer" parent="."]
+layer = 2
+visible = false
+
+[node name="interact" type="HBoxContainer" parent="canvas"]
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -18.0
+offset_right = 65.0
+offset_bottom = -5.0
+grow_vertical = 0
+
+[node name="label" type="Label" parent="canvas/interact"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_iy6vl")
+theme_override_font_sizes/font_size = 8
+text = "E to exit"
+
+[node name="label" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -109.0
+offset_top = -37.0
+offset_right = 111.0
+offset_bottom = 43.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_fonts/font = ExtResource("1_iy6vl")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxTexture_ovglf")
+text = "You're running a hydroponic farm to help improve the community's food security. 
+(use arrow keys or WASD to move)"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2

@@ -1,0 +1,166 @@
+[gd_scene load_steps=11 format=3 uid="uid://bi02ll28hsbvq"]
+
+[ext_resource type="Texture2D" uid="uid://dswdmha5680qf" path="res://assets/store.png" id="1_tggo4"]
+[ext_resource type="Script" path="res://scripts/store.gd" id="2_lrig6"]
+[ext_resource type="StyleBox" uid="uid://bmcxyciiw4aj0" path="res://styles/grab.tres" id="2_qh274"]
+[ext_resource type="FontFile" uid="uid://qgeerfxlkbkq" path="res://assets/dogica.otf" id="3_uyij7"]
+[ext_resource type="StyleBox" uid="uid://bkxwlx0sn43wp" path="res://styles/button.tres" id="4_jvnle"]
+[ext_resource type="StyleBox" uid="uid://cfe4b40vdm6o2" path="res://styles/button2.tres" id="5_phaov"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_pgb6f"]
+color = Color(0.294118, 0.407843, 0.505882, 1)
+thickness = 2
+vertical = true
+
+[sub_resource type="Theme" id="Theme_mdqn1"]
+VScrollBar/styles/grabber = ExtResource("2_qh274")
+VScrollBar/styles/grabber_highlight = ExtResource("2_qh274")
+VScrollBar/styles/grabber_pressed = ExtResource("2_qh274")
+VScrollBar/styles/scroll = SubResource("StyleBoxLine_pgb6f")
+VScrollBar/styles/scroll_focus = null
+
+[sub_resource type="FontVariation" id="FontVariation_olsnx"]
+base_font = ExtResource("3_uyij7")
+spacing_glyph = -1
+spacing_space = -4
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2bd7u"]
+
+[node name="store" type="TextureRect"]
+offset_right = 95.0
+offset_bottom = 70.0
+texture = ExtResource("1_tggo4")
+script = ExtResource("2_lrig6")
+
+[node name="scroll" type="ScrollContainer" parent="."]
+layout_mode = 0
+offset_left = 3.0
+offset_top = 9.0
+offset_right = 111.0
+offset_bottom = 66.0
+theme = SubResource("Theme_mdqn1")
+
+[node name="vbox" type="VBoxContainer" parent="scroll"]
+layout_mode = 2
+theme_override_constants/separation = 1
+
+[node name="button" type="Button" parent="scroll/vbox"]
+custom_minimum_size = Vector2(51, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_olsnx")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2bd7u")
+theme_override_styles/disabled = ExtResource("4_jvnle")
+theme_override_styles/hover_pressed = ExtResource("4_jvnle")
+theme_override_styles/hover = ExtResource("4_jvnle")
+theme_override_styles/pressed = ExtResource("5_phaov")
+theme_override_styles/normal = ExtResource("4_jvnle")
+text = "$80-LED Lights"
+alignment = 0
+
+[node name="button2" type="Button" parent="scroll/vbox"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_olsnx")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2bd7u")
+theme_override_styles/disabled = ExtResource("4_jvnle")
+theme_override_styles/hover_pressed = ExtResource("4_jvnle")
+theme_override_styles/hover = ExtResource("4_jvnle")
+theme_override_styles/pressed = ExtResource("5_phaov")
+theme_override_styles/normal = ExtResource("4_jvnle")
+text = "$180-Plant Rack"
+alignment = 0
+
+[node name="button4" type="Button" parent="scroll/vbox"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_olsnx")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2bd7u")
+theme_override_styles/disabled = ExtResource("4_jvnle")
+theme_override_styles/hover_pressed = ExtResource("4_jvnle")
+theme_override_styles/hover = ExtResource("4_jvnle")
+theme_override_styles/pressed = ExtResource("5_phaov")
+theme_override_styles/normal = ExtResource("4_jvnle")
+text = "$40-Water Pump"
+alignment = 0
+
+[node name="button3" type="Button" parent="scroll/vbox"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_olsnx")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2bd7u")
+theme_override_styles/disabled = ExtResource("4_jvnle")
+theme_override_styles/hover_pressed = ExtResource("4_jvnle")
+theme_override_styles/hover = ExtResource("4_jvnle")
+theme_override_styles/pressed = ExtResource("5_phaov")
+theme_override_styles/normal = ExtResource("4_jvnle")
+text = "$20-Water Pipes"
+alignment = 0
+
+[node name="button8" type="Button" parent="scroll/vbox"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_olsnx")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2bd7u")
+theme_override_styles/disabled = ExtResource("4_jvnle")
+theme_override_styles/hover_pressed = ExtResource("4_jvnle")
+theme_override_styles/hover = ExtResource("4_jvnle")
+theme_override_styles/pressed = ExtResource("5_phaov")
+theme_override_styles/normal = ExtResource("4_jvnle")
+text = "$15-Nutrients"
+alignment = 0
+
+[node name="button5" type="Button" parent="scroll/vbox"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_olsnx")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2bd7u")
+theme_override_styles/disabled = ExtResource("4_jvnle")
+theme_override_styles/hover_pressed = ExtResource("4_jvnle")
+theme_override_styles/hover = ExtResource("4_jvnle")
+theme_override_styles/pressed = ExtResource("5_phaov")
+theme_override_styles/normal = ExtResource("4_jvnle")
+text = "$15-T. starts"
+alignment = 0
+
+[node name="button7" type="Button" parent="scroll/vbox"]
+custom_minimum_size = Vector2(51, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_olsnx")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2bd7u")
+theme_override_styles/disabled = ExtResource("4_jvnle")
+theme_override_styles/hover_pressed = ExtResource("4_jvnle")
+theme_override_styles/hover = ExtResource("4_jvnle")
+theme_override_styles/pressed = ExtResource("5_phaov")
+theme_override_styles/normal = ExtResource("4_jvnle")
+text = "$15-B. starts"
+alignment = 0
+
+[node name="button6" type="Button" parent="scroll/vbox"]
+custom_minimum_size = Vector2(51, 0)
+layout_mode = 2
+theme_override_fonts/font = SubResource("FontVariation_olsnx")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/focus = SubResource("StyleBoxEmpty_2bd7u")
+theme_override_styles/disabled = ExtResource("4_jvnle")
+theme_override_styles/hover_pressed = ExtResource("4_jvnle")
+theme_override_styles/hover = ExtResource("4_jvnle")
+theme_override_styles/pressed = ExtResource("5_phaov")
+theme_override_styles/normal = ExtResource("4_jvnle")
+text = "$15-L. starts"
+alignment = 0
+
+[connection signal="pressed" from="scroll/vbox/button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="scroll/vbox/button2" to="." method="_on_button_2_pressed"]
+[connection signal="pressed" from="scroll/vbox/button4" to="." method="_on_button_4_pressed"]
+[connection signal="pressed" from="scroll/vbox/button3" to="." method="_on_button_3_pressed"]
+[connection signal="pressed" from="scroll/vbox/button8" to="." method="_on_button_8_pressed"]
+[connection signal="pressed" from="scroll/vbox/button5" to="." method="_on_button_5_pressed"]
+[connection signal="pressed" from="scroll/vbox/button7" to="." method="_on_button_7_pressed"]
+[connection signal="pressed" from="scroll/vbox/button6" to="." method="_on_button_6_pressed"]

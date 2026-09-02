@@ -1,0 +1,116 @@
+[gd_scene load_steps=9 format=3 uid="uid://bhnudygk1go3b"]
+
+[ext_resource type="PackedScene" uid="uid://7w8biwg3i00p" path="res://scenes/warehouse_bg.tscn" id="1_afueh"]
+[ext_resource type="Script" path="res://scripts/warehouse.gd" id="1_e3spr"]
+[ext_resource type="PackedScene" uid="uid://cfwee7woqhfmu" path="res://scenes/player.tscn" id="3_32g2i"]
+[ext_resource type="PackedScene" uid="uid://dfu60k0v34a8j" path="res://scenes/camera.tscn" id="4_nllvm"]
+[ext_resource type="PackedScene" uid="uid://bi02ll28hsbvq" path="res://scenes/store.tscn" id="5_3uct5"]
+[ext_resource type="PackedScene" uid="uid://d0o1cmab0yowj" path="res://scenes/inventory.tscn" id="5_uib6h"]
+[ext_resource type="FontVariation" uid="uid://bbaixo51jqf5v" path="res://assets/dogica.tres" id="7_ebvvt"]
+[ext_resource type="PackedScene" uid="uid://kf7e74711b1d" path="res://scenes/info.tscn" id="8_c0337"]
+
+[node name="warehouse" type="Node2D"]
+script = ExtResource("1_e3spr")
+
+[node name="warehouse_bg" parent="." instance=ExtResource("1_afueh")]
+offset_left = -141.0
+offset_top = -124.0
+offset_right = 459.0
+offset_bottom = 276.0
+
+[node name="player" parent="." instance=ExtResource("3_32g2i")]
+unique_name_in_owner = true
+position = Vector2(260, 89)
+
+[node name="Camera2D" parent="player" instance=ExtResource("4_nllvm")]
+
+[node name="Area2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+position = Vector2(1, 0)
+polygon = PackedVector2Array(49, 26, 49, 99, 285, 99, 285, 31, 334, 36, 334, 188, 8, 188, 8, 38)
+
+[node name="canvas" type="CanvasLayer" parent="."]
+
+[node name="canvas_control" type="Control" parent="canvas"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="hbox" type="HBoxContainer" parent="canvas/canvas_control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -75.0
+offset_right = 122.0
+offset_bottom = -5.0
+grow_vertical = 0
+
+[node name="store" parent="canvas/canvas_control/hbox" instance=ExtResource("5_3uct5")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="inventory" parent="canvas/canvas_control" instance=ExtResource("5_uib6h")]
+layout_mode = 1
+offset_left = -48.0
+offset_right = -6.0
+
+[node name="interact" type="HBoxContainer" parent="canvas/canvas_control"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -85.0
+offset_top = -15.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="label" type="Label" parent="canvas/canvas_control/interact"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ebvvt")
+theme_override_font_sizes/font_size = 8
+
+[node name="money" type="HBoxContainer" parent="canvas/canvas_control"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = 85.0
+offset_bottom = 15.0
+
+[node name="money" type="Label" parent="canvas/canvas_control/money"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_fonts/font = ExtResource("7_ebvvt")
+theme_override_font_sizes/font_size = 8
+text = "money:"
+
+[node name="info" type="HBoxContainer" parent="canvas/canvas_control"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -175.0
+offset_right = 250.0
+offset_bottom = 175.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = -1
+
+[node name="info" parent="canvas/canvas_control/info" instance=ExtResource("8_c0337")]
+layout_mode = 2

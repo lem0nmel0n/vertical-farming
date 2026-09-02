@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://d0o1cmab0yowj"]
+
+[ext_resource type="Texture2D" uid="uid://cfcv0vqsp4nv4" path="res://assets/inventory.png" id="1_fumss"]
+[ext_resource type="Script" path="res://scripts/inventory.gd" id="2_506iu"]
+[ext_resource type="FontVariation" uid="uid://bbaixo51jqf5v" path="res://assets/dogica.tres" id="3_yj7ej"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yvx6h"]
+
+[node name="inventory" type="HBoxContainer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -47.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = 52.0
+grow_horizontal = 0
+
+[node name="texture" type="TextureRect" parent="."]
+layout_mode = 2
+texture = ExtResource("1_fumss")
+script = ExtResource("2_506iu")
+
+[node name="label" type="Label" parent="texture"]
+layout_mode = 2
+offset_left = 16.0
+offset_top = 12.0
+offset_right = 34.0
+offset_bottom = 59.0
+theme_override_fonts/font = ExtResource("3_yj7ej")
+theme_override_font_sizes/font_size = 8
+theme_override_styles/normal = SubResource("StyleBoxEmpty_yvx6h")
