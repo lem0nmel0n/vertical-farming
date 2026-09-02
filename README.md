@@ -9,7 +9,8 @@ it contains about 7 bajillion lines of highly sophisticated farming simulation t
 
 <sub>*this number may be slightly inaccurate due to the inherent limitations of line counting software</sub>
 
-you can play the game at lem0nmel0n.github.io/vertical-farming :]
+
+you can play the game [here](lem0nmel0n.github.io/vertical-farming) :]
 
 ## source code
 it's public (yay!)
@@ -33,11 +34,11 @@ if you can be bothered, please read the source files.
 - requests from customers
 
 ## message from the developer
-hey!
 this was originally created for a school project about vertical farming that i had to finish in two weeks.
 
 i hope you learn something from playing (or reading the source code. i learnt a couple big words writing all those comments).
 
 if you made it this far, thanks for checking out my project :]
+
 enjoy my humble vertical farm (or don't. no one's forcing you.)
 
