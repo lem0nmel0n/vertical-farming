@@ -1,6 +1,6 @@
 extends Area2D
 
-#loads the informative label and assigns it to a variable for accessibility
+#loads the informative label and assigns it to a variable, henceforce ensuring the swift and hinderless acquisition of said node
 @onready var e_label : Label = $"../../canvas/canvas_control/interact/label"
 
 func _on_body_entered(body: Node2D) -> void:
