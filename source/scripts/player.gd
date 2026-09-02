@@ -57,10 +57,11 @@ func _physics_process(_delta: float) -> void:
 	delta (unused)
 	'''
 	if %info.visible: #performs a conditional check on the obstructive, informational popup
-		if Input.is_action_just_pressed("interact"): #additionally, if user interaction hath evaluated to a true value
-			#the popup contents are then hidden
+		if Input.is_action_just_pressed("interact"): #additionally, if user interaction hath evaluated to a true value, the popup
+			#contents are then expelled into the darkness to never be seen again, to be forgotten and abandoned until they may be called unto once more.
 			%info.visible = false
-			%info.get_node("info/canvas").visible = false
+			%info.get_node("info/canvas").visible = false #executes the transformation of the canvas visibilty to a hidden state, as vengeance for times prior where
+			#the player was briefly impeded from their noble quest.
 			
 	else: #once the obstructive popup hath been ridden by the might of the user's "E" key
 		%money.text = "money: $" + str(GameState.money) #updates the money label residing in the top leftmost corner
