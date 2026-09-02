@@ -65,7 +65,9 @@ func speak(inventory):
 			GameState.money += GameState.added_money
 			add_money = false #prompts the player script to stop showing the money addition popup
 			#displays a popup thanking the player for playing through the ups and downs of this rollercoaster 
-			#and for being there until the cruel limitations of school videogame project scope hath mercilessly do us part
+			#for serving the noble purpose of raising towering stalks of crops that the public may be fed
+			#and for being there until the end
+			#until the cruel limitations of school videogame project scope hath mercilessly do us part
 			%player.show_message("Congratulations on serving all your customers! Thanks for playing :]")
 			currently_speaking = false #resets the currently_speaking variable to false
 
