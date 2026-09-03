@@ -14,7 +14,7 @@ func _on_body_entered(body: Node2D) -> void:
 	'''
 	
 	if body.name == "player":#determines whether the provided body node is in fact, the aforementioned player node.
-		if GameState.l_grown: #conducts a conditional evaluation to determine if the boolean assumes a true value.
+		if GameState.l_grown: #conducts a conditional evaluation using dot notation and an unspoken comparison statement to determine the ultimate truthiness of the boolean
 			#performs an assessment on the aggregated total of lettuce heads in the inventory 
 			#to check if it is not equal to the amount of lettuce requested by their royal stupendousness the customer. 
 			#if they are not of an equivalent value, the instructive label displays informative material,
