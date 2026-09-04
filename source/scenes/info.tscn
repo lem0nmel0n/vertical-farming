@@ -46,7 +46,9 @@ grow_vertical = 2
 theme_override_fonts/font = ExtResource("1_iy6vl")
 theme_override_font_sizes/font_size = 8
 theme_override_styles/normal = SubResource("StyleBoxTexture_ovglf")
-text = "You're running a hydroponic farm to help improve the community's food security. 
+text = "Grow your hydroponic farm to help community food security. 
+Chat with a customer to get started!
+
 (use arrow keys or WASD to move)"
 horizontal_alignment = 1
 vertical_alignment = 1

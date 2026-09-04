@@ -13,7 +13,7 @@ func _on_body_entered(body: Node2D) -> void:
 	'''
 	if body.name == "player": #determines whether the provided body node is in fact, the aforementioned player node.
 		body.interact = "door" #changes a player variable responsible for storing objects it is in contact with
-		e_label.text = "E to open"
+		e_label.text = "E to open door"
 
 
 func _on_body_exited(body: Node2D) -> void:

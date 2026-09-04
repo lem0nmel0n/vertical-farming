@@ -8,15 +8,17 @@ var interact : String = "" #initialises the interact variable, upon whom the sub
 var b_growing = false
 var t_growing = false
 var l_growing = false
+
+var areas
 var amount = 0
 
 #growing functions for three distinct entities, comprising of tomatoes, lettuce and strawberries. 
 #though their respective variables are uniquely transformed, ultimately all must endure indentical cultivation processes. 
 func t_grow():
 	t_growing = true
-	GameState.t_grown = false
+	GameState.t_grown = false #this is used to determine tomato rack frames in warehouse.gd
 	GameState.t_collected = false
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(2).timeout #a timer is created to simulate fast-paced growing times
 	GameState.t_grown = true
 	GameState.t_collected = false
 	t_growing = false
@@ -57,11 +59,10 @@ func _physics_process(_delta: float) -> void:
 	delta (unused)
 	'''
 	if %info.visible: #performs a conditional check on the obstructive, informational popup
-		if Input.is_action_just_pressed("interact"): #additionally, if user interaction hath evaluated to a true value, the popup
-			#contents are then expelled into the darkness to never be seen again, to be forgotten and abandoned until they may be called unto once more.
+		if Input.is_action_just_pressed("interact"): #additionally, if user interaction hath evaluated to a true value
+			#the popup contents are then hidden
 			%info.visible = false
-			%info.get_node("info/canvas").visible = false #executes the transformation of the canvas visibilty to a hidden state, as vengeance for times prior where
-			#the player was briefly impeded from their noble quest.
+			%info.get_node("info/canvas").visible = false
 			
 	else: #once the obstructive popup hath been ridden by the might of the user's "E" key
 		%money.text = "money: $" + str(GameState.money) #updates the money label residing in the top leftmost corner
@@ -111,9 +112,6 @@ func _physics_process(_delta: float) -> void:
 				
 		if interact == "customers": #performs a systematic evaluation to ascertain any interactions with customers.
 			if Input.is_action_just_pressed("interact"): #evaluates if interaction was prompted by the user
-				if GameState.new_customer: 
-					#resets the new_customer variable after the initial interaction
-					GameState.new_customer = false
 				$"../customers".speak(GameState.inventory) #calls unto the customer node to request their needs
 		else:
 			if has_node("../customers"): 
@@ -151,10 +149,9 @@ func _physics_process(_delta: float) -> void:
 					
 				elif not GameState.t_grown and GameState.bought.has("tomatoes"):
 					#ascertains if tomatoes are not grown, yet tomato starts have been acquired.
-					GameState.t_collected = false #this is used to determine tomato rack frames in warehouse.gd
 					GameState.bought.erase("tomatoes") #the starts are planted and erased from the acquisitions list
-					await get_tree().create_timer(2).timeout #a timer is created to simulate fast-paced growing times
-					GameState.t_grown = true
+					t_grow()
+
 		
 		if interact == "lettuce": #performs an evaluation to ascertain any interactions with lettuce planting systems
 			if Input.is_action_just_pressed("interact"): #evaluates if interaction was prompted by the user
@@ -183,10 +180,8 @@ func _physics_process(_delta: float) -> void:
 					
 				elif not GameState.l_grown and GameState.bought.has("lettuce"):
 					#ascertains if lettuce are not grown, yet lettuce starts have been acquired.
-					GameState.l_collected = false #this is used to determine lettuce rack frames in warehouse.gd
 					GameState.bought.erase("lettuce") #the starts are planted and erased from the acquisitions list
-					await get_tree().create_timer(2).timeout #a timer is created to simulate fast-paced growing times
-					GameState.l_grown = true
+					l_grow()
 				
 		
 		if interact == "berries": #performs an evaluation to ascertain any interactions with berry planting systems
@@ -211,8 +206,58 @@ func _physics_process(_delta: float) -> void:
 						
 				elif not GameState.b_grown and GameState.bought.has("berries"):
 					#ascertains if berries are not grown, yet berries starts have been acquired.
-					GameState.b_collected = false #this is used to determine berries rack frames in warehouse.gd
 					GameState.bought.erase("berries") #the starts are planted and erased from the acquisitions list
-					await get_tree().create_timer(2).timeout #a timer is created to simulate fast-paced growing times
-					GameState.b_grown = true
+					b_grow()
+					
+		areas = $Area2D.get_overlapping_areas()
+		for area in areas:
+			if area.name == "berries":
+				if GameState.b_grown: #conducts a conditional evaluation to determine if the boolean assumes a true value.
+					#performs an assessment on the aggregated total of berries in the inventory 
+					#to check if it is not equal to the amount of berries requested by their majesty the customer. 
+					#if they are not of an equivalent value, the instructive label displays informative material,
+					#entailing the user action required to perform the harvesting action.
+					if GameState.inventory[area.name] != GameState.customers[GameState.customer_index][3]:
+						interact = area.name #changes a player variable responsible for storing objects it is in contact with
+						%interact.get_node("label").text = "E to harvest"
+				else: #if the condition evaluates to false
+					#the user is prompted to plant the berry starts if they possess them
+					if area.name in GameState.bought:
+						interact = area.name
+						%interact.get_node("label").text = "E to plant"
+					else:
+						%interact.get_node("label").text = ""
+			elif area.name == "lettuce":
+				if GameState.l_grown: #conducts a conditional evaluation to determine if the boolean assumes a true value.
+					#performs an assessment on the aggregated total of lettuce heads in the inventory 
+					#to check if it is not equal to the amount of lettuce requested by their royal stupendousness the customer. 
+					#if they are not of an equivalent value, the instructive label displays informative material,
+					#entailing the user action required to perform the harvesting action.
+					if GameState.inventory[area.name] != GameState.customers[GameState.customer_index][2]:
+						interact = area.name #changes a player variable responsible for storing objects it is in contact with
+						%interact.get_node("label").text = "E to harvest"
+				else: #if the condition evaluates to false
+					#the user is prompted to plant the berry starts if they possess them
+					if area.name in GameState.bought:
+						interact = area.name
+						%interact.get_node("label").text = "E to plant"
+					else:
+						%interact.get_node("label").text = ""
+			elif area.name == "tomatoes":
+				if GameState.t_grown: #conducts a conditional evaluation to determine if the boolean assumes a true value.
+					#performs an assessment on the aggregated total of lettuce heads in the inventory 
+					#to check if it is not equal to the amount of lettuce requested by their royal grandness, the eminent sovereign of infinite velocity, the customer. 
+					#if they are not of an equivalent value, the instructive label displays informative material,
+					#entailing the user action required to perform the harvesting action.
+					if GameState.inventory[area.name] != GameState.customers[GameState.customer_index][1]:
+						interact = area.name #changes a player variable responsible for storing objects it is in contact with
+						%interact.get_node("label").text = "E to harvest"
+				else: #if the condition evaluates to false
+					#the user is prompted to plant the berry starts if they possess them
+					if area.name in GameState.bought:
+						interact = area.name
+						%interact.get_node("label").text = "E to plant"
+					else:
+						%interact.get_node("label").text = ""
+
 		move_and_slide()

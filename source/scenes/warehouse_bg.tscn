@@ -33,7 +33,7 @@ texture = ExtResource("9_lyrdr")
 position = Vector2(230, 212)
 
 [node name="lettuce" parent="." instance=ExtResource("4_pe74t")]
-position = Vector2(377, 212)
+position = Vector2(373, 212)
 
 [node name="berries" parent="." instance=ExtResource("5_elq2d")]
 visible = false

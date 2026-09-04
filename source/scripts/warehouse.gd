@@ -5,6 +5,12 @@ extends Node2D
 @onready var lettuce : Sprite2D = $"warehouse_bg/lettuce/sprite"
 @onready var berries : Sprite2D = $"warehouse_bg/berries/sprite"
 
+func _ready() -> void:
+	if GameState.customer_index == 0:
+		%player.show_message("Walk towards crops, then hit E to harvest them!")
+	if GameState.customer_index == 1:
+		%player.show_message("Click items in the store to start building your farm.")
+
 func _process(delta) -> void:
 	#store buttons are disabled by default, to prevent the premature purchasing of components, as they are not required for the inaugural customer.
 	#the block below enables the buttons if the first customer hath been valeted
@@ -75,7 +81,7 @@ func _process(delta) -> void:
 			tomatoes.frame = 1
 			lettuce.frame = 1
 	if "pump" in GameState.bought:
-		#if ascuqisitions list consists of a humble water pump, the player is perpetually barred from purchasing it once more
+		#if acquisitions list consists of a humble water pump, the player is perpetually barred from purchasing it once more
 		#through the incapacitation of the water pump button
 		$"warehouse_bg/waterpump".visible = true
 		%store.get_node("scroll/vbox/button4").disabled = true

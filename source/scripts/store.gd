@@ -27,6 +27,8 @@ func _on_button_3_pressed() -> void:
 		if subtract_money(20, $"scroll/vbox/button3"):
 			$"scroll/vbox/button3".disabled = true
 			GameState.bought.append("pipes")
+	else:
+		%player.show_message("Pipes have to be bought after other components.")
 
 func _on_button_4_pressed() -> void:
 	if subtract_money(40, $"scroll/vbox/button4"):

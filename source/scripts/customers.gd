@@ -16,15 +16,13 @@ func speak(inventory):
 		#if the player is already conversing with their royal prodigiousness, the grand conqueror of all food-related produce, the customer
 		return
 	currently_speaking = true
-	label.text = "" #effectuates the binding of a devoid value to the label.text indentifier, thereby commanding the contents of the label remaining heretofore 
-    #to be expunged, effacing any linguistic material inhabiting the label component prior to this instant.
-	var customer = GameState.customers[GameState.customer_index] #recuperates customer data from the GameState autoload, including their linguistic choices during
-    # the inevitable interlocution betwixt them and the player, and the produce they requisition
-	var produce = ["tomatoes", "lettuce", "berries"] #consigns all possible produce within a mutable, indexed sequence more ordinarily alluded to as the list abstract data type in colloquial confabulation.
-	var completed = true #initialises the completed var to a builtin boolean value that, for lack of any other name, may be called true
+	label.text = "" #erases any text previously residing within the label
+	var customer = GameState.customers[GameState.customer_index] #recuperates customer data from the GameState autoload, including their dialogue 
+	#and the produce they requisition
+	var produce = ["tomatoes", "lettuce", "berries"] #consigns all possible produce within a list abstract data type
+	var completed = true #initialises the completed var to a builtin boolean value that, for lack of any other name, may be called false
 	for i in produce.size(): #systematically loops through the indices of the produce list
-		var item = produce[i] #deploys the "var" keyword mechanism for mutable data allocation to materialise the "item" indentifier, hereafter retrieving and consigning the
-		#value of the agricultural commodity to said identifier by utilising the pointer "i" to reference the numerical coordinates at which such a crop resides
+		var item = produce[i] #retrieves the value of the produce
 		if not inventory[item] == customer[i+1]: #performs a conditional evaluation to determine if the number of a certain type of produce
 			#is not equal to the amount requested by the customer. this implies that the harvesting of such produce hath not occurred,
 			#and thereby the order hath not been accomplished.
@@ -33,10 +31,6 @@ func speak(inventory):
 		var money = customer[4] #initialises the money variable to the fifth item in the customer's data
 		GameState.added_money = money #assigns the added_money variable to the customer's payment amount to use in a popup
 		if GameState.customer_index != 7: #ensures the customer is not the last
-			if GameState.customer_index == 0: #performs a conditional evaluation to determine if the customer is the first
-				#displays a popup after the first customer hath been sufficed
-				%player.show_message("This farm makes fresh food affordable to combat food insecurity, which impacts about 3.5 million Australian households.")
-			clear() #resets the dialogue label's value
 			add_money = true #prompts the player script to show the money addition popup
 			#resets all produce numbers in the inventory
 			GameState.inventory["tomatoes"] = 0
@@ -45,14 +39,20 @@ func speak(inventory):
 			
 			GameState.new_customer = true
 			GameState.customer_index += 1 #systematically increments the customer index by 1 to progress to the next customer
+			dialogue.text = "customer: thanks!"
 			await get_tree().create_timer(1.5).timeout #displays the customer for a short moment before switching to the next customer frame
+			clear() #resets the dialogue label's value
 			$"sprite".frame = GameState.customer_index
 			GameState.money += GameState.added_money #performs a standard augmentation of the customer's payment onto the player's aggregated total of money
 			add_money = false #prompts the player script to stop showing the money addition popup
 			await get_tree().create_timer(1).timeout #waits for a second before displaying the customer's humble request
 			customer = GameState.customers[GameState.customer_index]
-			dialogue.text = "customer: " + customer[0]
 			currently_speaking = false #resets the currently_speaking variable to a boolean value of false
+			if GameState.customer_index - 1 == 0: #performs a conditional evaluation to determine if the customer is the first
+				#displays a popup after the first customer hath been sufficed
+				%player.show_message("This farm makes fresh food affordable to combat food insecurity, which impacts about 3.5 million Australian households.")
+			else:
+				dialogue.text = "customer: " + customer[0]
 		else: #the block of code below executes if the customer is, unfortunately, the last of the day
 			visible = false #incapacitates the customer node's visibility
 			$CollisionShape2D.disabled = true #disables the customer node's collision area
@@ -64,16 +64,17 @@ func speak(inventory):
 			await get_tree().create_timer(1.5).timeout
 			GameState.money += GameState.added_money
 			add_money = false #prompts the player script to stop showing the money addition popup
-
 			#displays a popup thanking the player for playing through the ups and downs of this rollercoaster 
-			#for serving the noble purpose of raising towering stalks of crops that the public may be fed
-			#and for being there until the end
-			#until the cruel limitations of school videogame project scope hath mercilessly do us part
+			#and for being there until the cruel limitations of school videogame project scope hath mercilessly do us part
 			%player.show_message("Congratulations on serving all your customers! Thanks for playing :]")
 			currently_speaking = false #resets the currently_speaking variable to false
 
 	else:
 		dialogue.text = "customer: " + customer[0]
+		if GameState.customer_index == 0 and GameState.new_customer: #gives the user further instructions if it is their inaugural interaction with the customer.
+			dialogue.text += "(enter the warehouse to harvest crops)" 
+		if GameState.new_customer: 
+			GameState.new_customer = false
 		currently_speaking = false
 
 func clear():
