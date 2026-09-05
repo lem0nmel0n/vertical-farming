@@ -1,6 +1,6 @@
 extends Area2D
 
-@onready var e_label : Label = $"../../canvas/canvas_control/interact/label"
+@onready var e_label : Label = $"../../canvas/interact/label"
 
 func _on_body_entered(body: Node2D) -> void:
 	'''
